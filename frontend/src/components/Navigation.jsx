@@ -32,55 +32,78 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-white/90 backdrop-blur-sm'
+        isScrolled ? 'bg-white/95 backdrop-blur-sm' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="max-w-full px-6 py-4 lg:px-10 lg:py-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="text-2xl md:text-3xl font-bold text-black hover:text-gray-700 transition-colors"
+            className="text-sm md:text-base font-bold text-black hover:text-gray-600 transition-colors tracking-widest uppercase"
           >
-            AR
+            {/* Hidden on mobile in hero, shows on scroll */}
           </button>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-sm font-mono uppercase tracking-widest text-black hover:text-gray-600 transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
-              </button>
-            ))}
+          {/* Desktop Navigation - Right aligned like reference */}
+          <div className="hidden md:flex items-center gap-8 ml-auto">
+            <span className="text-xs text-black">2025</span>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="text-xs text-black hover:text-gray-600 transition-colors"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="text-xs text-black hover:text-gray-600 transition-colors"
+            >
+              Work
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-xs text-black hover:text-gray-600 transition-colors"
+            >
+              Contact
+            </button>
+            <div className="flex items-center gap-3 ml-2">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-xs text-black hover:text-gray-600 transition-colors">
+                IG
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-xs text-black hover:text-gray-600 transition-colors">
+                TT
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-xs text-black hover:text-gray-600 transition-colors">
+                YT
+              </a>
+            </div>
           </div>
           
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-black hover:text-gray-700"
+            className="md:hidden text-black hover:text-gray-700 ml-auto"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
         
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-6 pb-4 space-y-4 border-t border-gray-200 pt-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left text-sm font-mono uppercase tracking-widest text-black hover:text-gray-600 transition-colors py-3"
-              >
-                {item.label}
-              </button>
-            ))}
+          <div className="md:hidden mt-4 pb-4 space-y-3">
+            <button
+              onClick={() => { scrollToSection('projects'); setIsMobileMenuOpen(false); }}
+              className="block w-full text-left text-sm text-black hover:text-gray-600 transition-colors py-2"
+            >
+              Work
+            </button>
+            <button
+              onClick={() => { scrollToSection('contact'); setIsMobileMenuOpen(false); }}
+              className="block w-full text-left text-sm text-black hover:text-gray-600 transition-colors py-2"
+            >
+              Contact
+            </button>
           </div>
         )}
       </div>
