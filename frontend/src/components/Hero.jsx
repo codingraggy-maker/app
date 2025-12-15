@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from './ui/button';
-import { ArrowDown, Download } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import { portfolioData } from '../data/mock';
 
 const Hero = () => {
@@ -11,10 +10,6 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleDownloadCV = () => {
-    alert('CV download functionality - will be connected to actual file');
   };
 
   return (
