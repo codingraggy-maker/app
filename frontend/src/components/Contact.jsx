@@ -26,7 +26,6 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Mock form submission
     setTimeout(() => {
       toast({
         title: "Message sent!",
@@ -38,48 +37,52 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 bg-gray-50">
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-black mb-4">Get In Touch</h2>
-          <p className="text-lg text-gray-600">Have a project in mind? Let's work together.</p>
+    <section id="contact" className="py-32 px-6 bg-white">
+      <div className="max-w-5xl mx-auto">
+        {/* Bold section header */}
+        <div className="mb-20">
+          <h2 className="text-8xl md:text-9xl font-bold text-black leading-none mb-6">Let's Talk</h2>
+          <div className="w-24 h-1 bg-black mb-6"></div>
+          <p className="text-2xl text-gray-600 font-light">Have a project in mind? Let's build something great together.</p>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 md:p-12 border border-gray-200 shadow-sm">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-sm font-mono uppercase tracking-wider text-black">
-              Name
-            </Label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="border-gray-300 focus:border-black focus:ring-black"
-              placeholder="Your name"
-            />
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-3">
+              <Label htmlFor="name" className="text-sm font-mono uppercase tracking-widest text-black">
+                Name *
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="border-2 border-black focus:ring-0 focus:border-black h-14 text-lg"
+                placeholder="John Doe"
+              />
+            </div>
+            
+            <div className="space-y-3">
+              <Label htmlFor="email" className="text-sm font-mono uppercase tracking-widest text-black">
+                Email *
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="border-2 border-black focus:ring-0 focus:border-black h-14 text-lg"
+                placeholder="john@example.com"
+              />
+            </div>
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-sm font-mono uppercase tracking-wider text-black">
-              Email
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="border-gray-300 focus:border-black focus:ring-black"
-              placeholder="your.email@example.com"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="message" className="text-sm font-mono uppercase tracking-wider text-black">
-              Message
+          <div className="space-y-3">
+            <Label htmlFor="message" className="text-sm font-mono uppercase tracking-widest text-black">
+              Message *
             </Label>
             <Textarea
               id="message"
@@ -87,8 +90,8 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
               required
-              rows={6}
-              className="border-gray-300 focus:border-black focus:ring-black resize-none"
+              rows={8}
+              className="border-2 border-black focus:ring-0 focus:border-black resize-none text-lg"
               placeholder="Tell me about your project..."
             />
           </div>
@@ -97,10 +100,10 @@ const Contact = () => {
             type="submit"
             size="lg"
             disabled={isSubmitting}
-            className="w-full bg-black text-white hover:bg-gray-800 transition-colors"
+            className="bg-black text-white hover:bg-gray-800 transition-all text-base px-12 py-6 font-mono uppercase tracking-wider"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
-            <Send className="ml-2 h-4 w-4" />
+            <Send className="ml-3 h-5 w-5" />
           </Button>
         </form>
       </div>
